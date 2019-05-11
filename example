@@ -1,0 +1,149 @@
+#include <bits/stdc++.h> 
+
+using namespace std;
+class Aluno {
+	private:
+		double p1, ma1, mb1, p2, ma2, mb2, media;
+		double aulas, faltas;
+		
+	public:
+		
+		Aluno() {
+			media = -1;
+		}
+		
+		void setP1(double _p1) {
+			p1 = _p1;
+		}
+		void setMa1(double _ma1) {
+			ma1 = _ma1;
+		}
+		void setMb1(double _mb1) {
+			mb1 = _mb1;
+		}
+		void setP2(double _p2) {
+			p2 = _p2;
+		}
+		void setMa2(double _ma2) {
+			ma2 = _ma2;
+		}
+		void setMb2(double _mb2) {
+			mb2 = _mb2;
+		}
+		void setMedia(double _media) {
+			media = _media;
+		}
+		void setAulas(double _aulas) {
+			aulas = _aulas;
+		}
+		void setFaltas(double _faltas) {
+			faltas = _faltas;
+		}
+		
+		
+		double getP1() {
+			return p1;
+		}
+		double getMa1() {
+			return ma1;
+		}
+		double getMb1() {
+			return mb1;
+		}
+		double getP2() {
+			return p2;
+		}
+		double getMa2() {
+			return ma2;
+		}
+		double getMb2() {
+			return mb2;
+		}
+		double getMedia() {
+			return media;
+		}
+		double getAulas() {
+			return aulas;
+		}
+		double getFaltas() {
+			return faltas;
+		}
+		
+		
+		void printStatus(double _media, double _presenca) {
+			if(_media < 0) {
+				cout << "Entre com os dados e calcule a média antes de imprimir o estado do aluno." << endl;
+				return;
+			}
+			
+			if(_media >= 5 && _presenca >= 75) {
+				cout << "Média final " << _media << ". Aprovado!" << endl;
+				return;
+			}
+			
+			if(_media <= 5 && _media >= 3 && _presenca >= 75) {
+				cout << "Média final " << _media << ". Recuperação!" << endl;
+				return;
+			}
+			
+			if(_media <= 3 && _presenca >= 75) {
+				cout << "Média final " << _media << ". Reprovado por nota!" << endl;
+				return;
+			}
+			
+			if(_presenca <= 75) {
+				cout << "Reprovado por falta!" << endl;
+				return;
+			}
+		};
+		
+		void calcMedia() {
+			double a1, a2;
+			double presenca;
+			
+			a1 = 0.7*p1 + 0.2*ma1 + 0.1*mb1;
+			a2 = 0.7*p2 + 0.2*ma2 + 0.1*mb2;
+			presenca = 100-((faltas/aulas)*100);
+			media = (a1 + a2*2)/3;
+			
+			printStatus(media, presenca);
+			
+			return;
+		}
+};
+
+int main() {
+	Aluno aluno;
+	double p1, ma1, mb1, p2, ma2, mb2;
+	int aulas, faltas;
+	
+	cout << "Entre com a nota P1: " << endl;
+	cin >> p1; 
+	cout << "Entre com a nota Ma1: " << endl;
+	cin >> ma1; 
+	cout << "Entre com a nota Mb1: " << endl;
+	cin >> mb1; 
+	cout << "Entre com a nota P2: " << endl;
+	cin >> p2; 
+	cout << "Entre com a nota Ma2: " << endl;
+	cin >> ma2; 
+	cout << "Entre com a nota Mb2: " << endl;
+	cin >> mb2; 
+	cout << "Entre com a quantidade de aulas: " << endl;
+	cin >> aulas; 
+	cout << "Entre com a quantidade de faltas: " << endl;
+	cin >> faltas; 
+	
+	
+	
+	aluno.setP1(p1);
+	aluno.setMa1(ma1);
+	aluno.setMb1(mb1);
+	aluno.setP2(p2);
+	aluno.setMa2(ma2);
+	aluno.setMb2(mb2);
+	aluno.setAulas(aulas);
+	aluno.setFaltas(faltas);
+	
+	aluno.calcMedia();
+}
